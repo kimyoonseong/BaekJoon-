@@ -8,10 +8,7 @@ vector<int> solution(vector<int> num_list) {
     
     vector<int> answer;
     int cnt=0;
-    if(num_list.size()<=5){
-        sort(num_list.begin(),num_list.end());
-        return answer;   
-    }
+    
     sort(num_list.begin(),num_list.end());
 
     for(const auto &s:num_list){
