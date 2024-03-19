@@ -1,10 +1,27 @@
--- 코드를 작성해주세요
-# select COUNT(ID) as FISH_COUNT,  B.FISH_NAME AS FISH_NAME
-# from FISH_INFO  A JOIN FISH_NAME_INFO  B ON A.FISH_TYPE=B.FISH_TYPE
-# group by B.FISH_NAME
-# order by FISH_COUNT desc
+with a as (
+    select count(fish_type) as FISH_COUNT
+        , FISH_TYPE
+    from FISH_INFO 
+    group by FISH_TYPE
 
-select COUNT(ID) as FISH_COUNT,  B.FISH_NAME AS FISH_NAME
-from FISH_INFO  A JOIN FISH_NAME_INFO  B ON A.FISH_TYPE=B.FISH_TYPE
-group by B.FISH_NAME
-order by FISH_COUNT desc
+)
+
+select a.FISH_COUNT as FISH_COUNT
+    , n.FISH_NAME as FISH_NAME
+from a
+    left join FISH_NAME_INFO as n on a.FISH_TYPE = n.FISH_TYPE
+order by a.FISH_COUNT desc
+
+
+# with cte as (
+# select count(fish_type) as fish_count, fish_type
+# from fish_info 
+# group by fish_type
+# )
+
+# select fish_count, fish_name
+# from cte c
+# left join fish_name_info using(fish_type)
+# order by fish_count desc;
+
+# ;
