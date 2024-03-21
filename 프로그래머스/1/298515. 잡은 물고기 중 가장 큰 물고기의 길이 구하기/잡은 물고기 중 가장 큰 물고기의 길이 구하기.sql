@@ -1,0 +1,3 @@
+-- 코드를 작성해주세요
+SELECT CONCAT(CAST(MAX(length) AS DECIMAL(10,2)), 'cm') AS MAX_LENGTH
+FROM FISH_INFO;
