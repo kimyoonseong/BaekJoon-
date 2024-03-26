@@ -24,11 +24,8 @@ bool solution(string s)
             a.push(s[i]);
             a.pop();
             a.pop();
-        }
-       
-        
+        }     
     }
-  
     if(a.size()!=0) answer=false; 
 
     return answer;
