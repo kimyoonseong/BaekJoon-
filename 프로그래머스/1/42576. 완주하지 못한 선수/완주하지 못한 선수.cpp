@@ -23,17 +23,17 @@ string solution(vector<string> participant, vector<string> completion) {
     map<string, int> participant_map;
 
     // 참가자들을 map에 추가하며 카운트 증가
-    for (const string& p : participant) {
+    for (string p : participant) {
         participant_map[p]++;
     }
 
     // 완주한 사람들의 카운트를 감소
-    for (const string& c : completion) {
+    for ( string c : completion) {
         participant_map[c]--;
     }
 
     // 카운트가 0이 아닌 사람을 찾음 (완주하지 못한 사람)
-    for (const auto& p : participant_map) {
+    for ( auto p : participant_map) {
         if (p.second > 0) {
             return p.first;
         }
