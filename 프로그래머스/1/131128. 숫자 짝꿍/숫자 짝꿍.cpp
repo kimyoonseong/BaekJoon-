@@ -41,7 +41,10 @@ string solution(string X, string Y) {
     // 공통 숫자와 최소 빈도를 찾기
     for(int i = 0; i < 10; ++i){
         int common_count = min(freqX[i], freqY[i]);
-        answer += string(common_count, '0' + i);
+        for(int j=0; j<common_count; j++){
+            answer+=('0'+i);
+        }
+        //answer += string(common_count, '0' + i);
     }
 
   
