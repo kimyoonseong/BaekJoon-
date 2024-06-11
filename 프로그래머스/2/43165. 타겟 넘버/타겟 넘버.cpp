@@ -3,7 +3,7 @@
 int visited[21];
 int answer=0;
 using namespace std;
-void dfs(vector<int> numbers, int target, int sum, int index){
+void dfs(vector<int> &numbers, int &target, int sum, int index){
    if(numbers.size()==index){
        if(target==sum){
            answer++;
