@@ -15,16 +15,16 @@ void dfs(int y, int x){
     return;
 }
 int solve(){
-	fill(&visited[0][0],&visited[0][0]+10*10,0);
-	// 바이러스는 방문처리시키고 바이러스 부터 dfs 
-  	for(pair<int, int> b : virusList){
-        visited[b.first][b.second] = 1;
-        dfs(b.first, b.second);
-    }
+	
+	fill(&visited[0][0],&visited[0][0]+9*9,0);
+	for(pair<int, int> b: virusList){
+			visited[b.first][b.second]=1;
+			dfs(b.first,b.second);
+	}
 	int cnt=0;
 	for(int i=0; i<n; i++){
 		for(int j=0; j<m; j++){
-			if(!visited[i][j]&&a[i][j]==0)cnt++;	//빈공간이면서 방문 x 카운 
+			if(a[i][j]==0&&visited[i][j]==0) cnt++;
 		}
 	}
 	return cnt;
