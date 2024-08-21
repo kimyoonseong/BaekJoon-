@@ -9,17 +9,14 @@ string target = "";
 string aeiou = "AEIOU";
 
 void dfs(string word) {
-     cnt++;
-    
-    if (word == target) {
-        answer = cnt;
+    cnt++;
+    if(word==target){
+        answer=cnt;
         return;
     }
-    
-    if (word.length() >= 5) return;
-    
-    for (int i=0; i<5; i++) {
-        dfs(word + aeiou[i]);
+    if(word.length()>=5) return;
+    for(int i=0; i<aeiou.size(); i++){
+        dfs(word+aeiou[i]);
     }
 }
 
