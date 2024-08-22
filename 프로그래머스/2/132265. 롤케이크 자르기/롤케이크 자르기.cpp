@@ -18,12 +18,14 @@ int solution(vector<int> topping) {
     {
         b[topping[i]]--;
         a[topping[i]]++;
-        
-//         auto it=b.find(i);
-//         if(it!=b.end()) b.erase(it);
         if(b[topping[i]]==0){
-            b.erase(topping[i]);
+            auto it=b.find(topping[i]);
+            if(it!=b.end()) b.erase(it);
+            
         }
+       //  if(b[topping[i]]==0){
+       //     b.erase(topping[i]);
+       //  }
         if(b.size()==a.size()) {
             
             answer++;
