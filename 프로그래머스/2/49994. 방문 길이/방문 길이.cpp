@@ -16,30 +16,30 @@ int solution(string dirs) {
     int y = 5; 
     
     for(int i=0; i<dirs.size(); i++){
-        int dir = 0;
-        char a = dirs[i];
-        if(a == 'L'){ //오른쪽 check
-            dir = 0;//2
-        } else if(a == 'U'){//아래 check
-            dir = 1;//3
-        } else if(a == 'R'){//왼쪽 check
-            dir = 2;//0
-        } else {
-            dir = 3;
+       int dir=0;
+        char c=dirs[i];
+        if(c=='L'){
+            dir=0;
         }
-        
+        else if(c=='D'){
+            dir=1;
+        }
+        else if(c=='R'){
+            dir=2;
+        }
+        else dir=3;
         int nx = x + dx[dir];
         int ny = y + dy[dir];
         
-        if(nx < 0 || ny < 0 || nx >= 11 || ny >= 11) continue;
-        int countdir = (dir + 2) % 4; 
-        if(!visited[x][y][dir] && !visited[nx][ny][countdir]){//출발점 출발방향 && 도착점 오는방향 x
-            visited[x][y][dir] = true;
-            visited[nx][ny][countdir] = true;
+        if(nx<0||nx>=11||ny<0||ny>=11) continue;
+        int countdir = (dir + 2) % 4;
+        if(!visited[x][y][dir]&&! visited[nx][ny][countdir]){
+            visited[x][y][dir]=true;
+            visited[nx][ny][countdir]=true;
             answer++;
         }
-        x = nx;
-        y = ny;
+        x=nx;
+        y=ny;
     }
     
     return answer;
