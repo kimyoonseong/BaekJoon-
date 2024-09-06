@@ -5,7 +5,6 @@ using namespace std;
 
 int solution(int storey) {
     int answer = 0;
-    int temp=10;
     while(storey!=0){
         int i=storey%10;
         if(i>5){
