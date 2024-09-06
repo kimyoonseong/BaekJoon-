@@ -27,15 +27,8 @@ int solution(int storey) {
                 storey-=i;
             }
             else {
-                 bool flag= true;//check(storey);
-                 if(flag){
                      answer+= 10-i;
                      storey+=10-i;
-                 }
-                 else{
-                      answer+=i;
-                      storey-=i;
-                 }
             }
         }           
         storey/=10;
