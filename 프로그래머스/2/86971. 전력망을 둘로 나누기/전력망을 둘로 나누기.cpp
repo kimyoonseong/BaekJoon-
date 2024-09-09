@@ -8,9 +8,8 @@ void DFS(vector<vector<int>> v, int i){
     if(visit[i]) return;
     visit[i]=true;
     counter++;
-    for(int j=0; j<v[i].size(); j++){
-            DFS(v,v[i][j]);
-            
+    for(int j: v[i]){
+            DFS(v,j);
     }
 
     return;
