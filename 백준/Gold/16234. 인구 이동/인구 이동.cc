@@ -9,14 +9,14 @@ void dfs(int y, int x, vector<pair<int, int>> &v){
         int ny = y+dy[i];
         int nx = x+dx[i];
         if(nx<0 || nx>=n || ny<0 || ny>=n || visited[ny][nx])continue;
-     	if(abs(a[ny][nx]- a[y][x]) >= l && abs(a[ny][nx] - a[y][x]) <= r){
-            visited[ny][nx] =1;
-            v.push_back({ny,nx});
-            sum += a[ny][nx];
-            dfs(ny,nx,v);
-        }
+     	if(abs(a[ny][nx]-a[y][x])>=l&&abs(a[ny][nx]- a[y][x])<=r){ 
+			visited[ny][nx]=1;
+			sum+=a[ny][nx];
+			v.push_back({ny,nx});
+			dfs(ny,nx,v);   
+		}
     }
-    //return ;
+    return ;
 	
 }
 int main(){ 
