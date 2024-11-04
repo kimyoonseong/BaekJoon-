@@ -1,0 +1,71 @@
+#include <iostream>
+#include <vector>
+#include <string.h>
+#include <queue>
+#include <algorithm>
+using namespace std;
+vector<pair<int,int>> v;
+vector<int> vec[10002];
+vector<int> result_bfs;
+vector<int> result_dfs;
+bool visit[1002];
+void bfs(int x){
+	queue<int> q;
+	q.push(x);
+	result_bfs.push_back(x);
+	visit[x]=true;
+	while(!q.empty()){
+		int x= q.front();
+		q.pop();
+		for(int i: vec[x]){
+			if(!visit[i]){
+				result_bfs.push_back(i);
+				q.push(i);	
+				visit[i]=true;	
+			}
+		}
+	}
+	
+}
+ 
+void dfs(int x){
+    visit[x] = true;
+    result_dfs.push_back(x);
+	for(int i: vec[x]){
+		if(!visit[i]){
+			dfs(i);
+		}
+	}
+//    for(int i=0; i<vec[x].size(); i++){
+//    	if(!visited[vec[x][i]]){
+//		
+//			dfs(vec[x][i]);
+//		}
+//    }
+}
+int main(){
+    int n, m, v, a, b;
+    cin >> n >> m >> v;
+ 
+    for (int i = 1; i <= m;i++){
+        cin >> a >> b;
+        vec[a].push_back(b); //양방향 간선처리
+        vec[b].push_back(a); //양방향 간선처리
+
+    }
+    for (int i = 1; i <= n;i++){
+        sort(vec[i].begin(), vec[i].end()); // 낮은 숫자부터 탐색.
+    }
+    bfs(v);
+    memset(visit, false, sizeof(visit));
+    dfs(v);
+    for (int i = 0; i < result_dfs.size() ;i++){
+        cout << result_dfs[i] << " ";
+    }
+    cout << '\n';
+    for (int i = 0; i < result_bfs.size() ;i++){
+        cout << result_bfs[i] << " ";
+    }
+    
+    return 0;
+}
