@@ -1,27 +1,43 @@
 -- 코드를 입력하세요
-SELECT MEMBER_NAME,
-        REVIEW_TEXT,
-        DATE_FORMAT(REVIEW_DATE,"%Y-%m-%d") as REVIEW_DATE
-FROM REST_REVIEW,MEMBER_PROFILE 
-WHERE REST_REVIEW.MEMBER_ID= MEMBER_PROFILE.MEMBER_ID
-    and REST_REVIEW.MEMBER_ID =
-        (       
-            SELECT MEMBER_ID FROM REST_REVIEW
-            GROUP BY MEMBER_ID
-            ORDER BY COUNT(*) DESC LIMIT 1
-         )
-ORDER BY REVIEW_DATE ASC,REVIEW_TEXT ASC;
+# SELECT MEMBER_NAME,
+#         REVIEW_TEXT,
+#         DATE_FORMAT(REVIEW_DATE,"%Y-%m-%d") as REVIEW_DATE
+# FROM REST_REVIEW,MEMBER_PROFILE 
+# WHERE REST_REVIEW.MEMBER_ID= MEMBER_PROFILE.MEMBER_ID
+#     and REST_REVIEW.MEMBER_ID =
+#         (       
+#             SELECT MEMBER_ID FROM REST_REVIEW
+#             GROUP BY MEMBER_ID
+#             ORDER BY COUNT(*) DESC LIMIT 1
+#          )
+# ORDER BY REVIEW_DATE ASC,REVIEW_TEXT ASC;
+ # select MEMBER_ID, COUNT(MEMBER_ID)
+ #        FROM REST_REVIEW 
+ #        GROUP BY MEMBER_ID 
+ #        ORDER BY COUNT(*) DESC LIMIT 1;
 
-# SELECT A.MEMBER_NAME,B.REVIEW_TEXT,DATE_FORMAT(B.REVIEW_DATE, "%Y-%m-%d") AS REVIEW_DATE
-# from MEMBER_PROFILE A join REST_REVIEW B
-# on A.MEMBER_ID = B.MEMBER_ID
-# WHERE A.MEMBER_ID = (SELECT MEMBER_ID FROM REST_REVIEW
-# GROUP BY MEMBER_ID
-# ORDER BY COUNT(*) DESC LIMIT 1)
-# order by REVIEW_DATE asc, REVIEW_TEXT     
-# select mem_id,max(cnt)
-#   from (
-#    select distinct(member_id) AS mem_id,count(member_id)as cnt
-#          from REST_REVIEW  
-#          group by mem_id
-# ) as A
+
+ select p.MEMBER_NAME , REVIEW_TEXT, DATE_FORMAT(REVIEW_DATE,"%Y-%m-%d") AS REVIEW_DATE
+ from MEMBER_PROFILE as p ,REST_REVIEW as r
+ where p.MEMBER_ID =r.MEMBER_ID
+     and p.MEMBER_ID like(
+         select MEMBER_ID
+            FROM REST_REVIEW 
+            GROUP BY MEMBER_ID 
+            ORDER BY COUNT(*) DESC LIMIT 1
+     )
+ORDER BY REVIEW_DATE ASC, REVIEW_TEXT ASC;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
