@@ -5,8 +5,8 @@
 #include <algorithm>
 using namespace std;
 int cnt=0;
-vector<int> vec[10002];
-bool visit[10002];
+vector<int> vec[102];
+bool visit[102];
 
  
 void dfs(int x){
@@ -31,9 +31,9 @@ int main(){
     for (int i = 1; i <= m;i++){
         cin >> a >> b;
         vec[a].push_back(b); 
-        vec[b].push_back(a); // 양방향 연결 추가
+        vec[b].push_back(a); 
     }
-	fill(&visit[0], &visit[0]+10002,0);
+	fill(&visit[0], &visit[0]+102,0);
     //memset(visit, false, sizeof(visit));
     dfs(1);
 	cout<<cnt-1;
