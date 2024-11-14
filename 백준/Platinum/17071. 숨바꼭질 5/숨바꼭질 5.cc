@@ -23,7 +23,7 @@ int main() {
             int x = q.front(); q.pop();
 			for(int nx : {x + 1, x - 1, x * 2}){
                 if(nx < 0 || nx > max_n || visited[turn%2][nx]) continue;
-                visited[turn % 2][nx] = visited[(turn + 1) % 2][x] + 1; // turn +1올려줘야함 다음 turn은 홀짝이 바뀌기 때문 
+                visited[turn % 2][nx] =  1; // turn +1올려줘야함 다음 turn은 홀짝이 바뀌기 때문 
                 if(nx == b){
                     ok = 1; break;
                 }
