@@ -11,7 +11,7 @@ int solution(vector<vector<int> > maps)
     q.push({0,0});
     int answer = 0;
 
-    while(q.size()){
+    while(!q.empty()){
         tie(y,x)=q.front();
         q.pop();
         for(int i=0; i<4; i++){
