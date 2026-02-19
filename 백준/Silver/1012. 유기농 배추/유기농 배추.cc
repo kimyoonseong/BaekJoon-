@@ -6,18 +6,15 @@ int m, n, k, y, x, ny, nx, t;
 int a[51][51];
 bool visited[51][51]; 
 void dfs(int y, int x){
-    visited[y][x] = 1;
-    for(int i = 0; i < 4; i++){
-        ny = y + dy[i];
-        nx = x + dx[i];
-        if(ny < 0 || nx < 0 || ny >=n || nx >= m) continue;
-        if(a[ny][nx] == 1 && !visited[ny][nx]){
-            dfs(ny, nx);
-        }
+    visited[y][x] = true;
+    for(int i=0; i<4; i++){
+        int ny= y+ dy[i];
+        int nx= x+ dx[i];
+        if(a[ny][nx]==0||visited[ny][nx]) continue;
+        
+        dfs(ny,nx);
     }
-    return;
 }
-
 int main(){ 
 
     cin >> t;
