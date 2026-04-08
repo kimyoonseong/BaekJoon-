@@ -1,30 +1,34 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <string>
+#include <algorithm>
+#include <vector>
+#include <map>
 using namespace std;
-int main(){
-	int n,cnt=0 ;
-	string s;
 
-	cin>>n;
-	for(int i=0; i<n; i++){
-		cin>> s;	
-		map<char, int > m;
-		for(int j=0; j<s.length(); j++){
-			if(m[s[j]]==0){
-				m[s[j]]++;
-			}
-			else {//if(m[s[j]]!=0)
-				if(s[j-1]==s[j]){
-					m[s[j]]++;
-				}
-				else break;
-			}
-			//cout<<j<<endl;	
-			if(j==s.length()-1){
-				//cout<<s<<endl;
-			 cnt++;
-			}
-		}
-	}
-	cout<<cnt;
-	return 0;
+int main() {
+  
+    int n, answer=0;
+    
+    cin>>n;
+    
+    for(int i=0; i<n; i++ ){
+        map<char,int> m;
+        string s;
+        bool flag =true;
+        cin>> s;
+
+        for(int j=0; j<s.length(); j++){
+            m[s[j]]++;
+           
+            if(m[s[j]]>1 && (s[j]!=s[j-1])) flag= false;
+        }
+     
+        //cout<<"flag: "<< flag;
+        if(flag==true) answer++;
+            
+
+    }
+    
+    cout<<answer;
+    return 0;
 }
