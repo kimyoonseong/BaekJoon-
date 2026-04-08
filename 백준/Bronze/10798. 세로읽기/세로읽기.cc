@@ -1,20 +1,22 @@
 #include <iostream>
+#include <string>
+#include <algorithm>
+#include <vector>
 
 using namespace std;
 
-char arr[5][15];
-
 int main() {
-
-	for (int i = 0; i < 5; i++)
+    // int n=3 , m=2; 
+    // // vector<vector<int>> v(n, vector<int>(m));
+    // vector<vector<int>> v(n, vector<int>(m));
+    char arr[5][15] = {0};
+    for (int i = 0; i < 5; i++)
 		cin >> arr[i];
 
-	for (int i = 0; i < 15; i++) {
-		for (int k = 0; k < 5; k++) {
-			if(arr[k][i] != NULL)
-				cout << arr[k][i];
-		}
-	}
-
-	return 0;
+    for(int j=0; j<15; j++){
+        for(int i=0; i<5; i++){
+            if(arr[i][j]!=NULL) cout << arr[i][j];   
+        }   
+    }
+    return 0;
 }
