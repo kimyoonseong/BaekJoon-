@@ -25,44 +25,86 @@ vector<int> solution(vector<string> park, vector<string> routes) {
     for(int i = 0; i < routes.size();i++){
         int step = (routes[i][2] - '0'); // step의 크기
         int cantMove = 0; // 움직이지 못하면 1 가능 -> 0
-        if(routes[i][0] == 'E'){
-            if(x + step < mapX){
-                for(int j = x;j <= x + step;j++){
-                    if(park[y][j]=='X')
-                        cantMove = 1;
+        char route= routes[i][0];
+        
+        if(route=='E'){
+            bool flag = true;
+            for(int j=1; j<=step; j++){
+                if(x + j >= mapX){   // 맵 밖
+                    flag = false;
+                    break;
                 }
-                if(cantMove == 0)
-                    x += step;
-            }
-        }else if (routes[i][0] == 'W'){
-            if(0 <=x - step){
-                for(int j = x;j >= x - step;j--){
-                    if(park[y][j]=='X')
-                        cantMove = 1;
+
+                if(park[y][x + j] == 'X'){   // 장애물
+                    flag = false;
+                    break;
                 }
-                if(cantMove == 0)
-                    x -= step;
-            }
-        }else if (routes[i][0] == 'S'){
-            if(y + step < mapY){
-                for(int j = y;j <= y + step;j++){
-                    if(park[j][x]=='X')
-                        cantMove = 1;
-                }
-                if(cantMove == 0)
-                    y += step;
+            }  
+            if(flag){
+                park[y][x+step]='S';
+                park[y][x]='O';
+                x+=step;
             }
            
-        }else if (routes[i][0] == 'N'){
-            if(0 <= y - step){
-                for(int j = y;y-step <= j;j--){
-                    if(park[j][x]=='X')
-                        cantMove = 1;
-                }
-                if(cantMove == 0)
-                    y -= step;
-            }
         }
+        else if(route =='S'){
+           bool flag = true;
+            for(int j=1; j<=step; j++){
+                if(y + j >= mapY){   // 맵 밖
+                    flag = false;
+                    break;
+                }
+
+                if(park[y+j][x] == 'X'){   // 장애물
+                    flag = false;
+                    break;
+                }
+            }  
+            if(flag){
+                park[y+step][x]='S';
+                park[y][x]='O';
+                y+=step;
+            }
+         }
+         else if(route =='W'){
+            bool flag = true;
+            for(int j=1; j<=step; j++){
+                if(x - j < 0){   // 맵 밖
+                    flag = false;
+                    break;
+                }
+
+                if(park[y][x - j] == 'X'){   // 장애물
+                    flag = false;
+                    break;
+                }
+            }  
+            if(flag){
+                park[y][x-step]='S';
+                park[y][x]='O';
+                x-=step;
+            }
+         }
+         else if(route =='N'){
+           bool flag = true;
+            for(int j=1; j<=step; j++){
+                if(y - j < 0){   // 맵 밖
+                    flag = false;
+                    break;
+                }
+
+                if(park[y-j][x] == 'X'){   // 장애물
+                    flag = false;
+                    break;
+                }
+            }  
+            if(flag){
+                park[y-step][x]='S';
+                park[y][x]='O';
+                y-=step;
+            }
+         }
+        
     }
    
     answer.push_back(y);
