@@ -16,14 +16,10 @@ int solution(vector<string> babbling) {
                 
             }//연속된 옹알이
             int pos=s.find(abba[j]);
-           // cout<<pos<<"<--pos"<<endl;
             if(pos==0){
-                s.erase(pos,abba[j].size());
+                s.erase(0,abba[j].size());
                 flag=j;
-                j=-1;
-               //  cout<<s<<endl;
-               //  cout<<j<<"<==j"<<endl;
-               // cout<<"--------------"<<endl;
+                j=-1;//0부터시작
                 
             }
             else continue;
