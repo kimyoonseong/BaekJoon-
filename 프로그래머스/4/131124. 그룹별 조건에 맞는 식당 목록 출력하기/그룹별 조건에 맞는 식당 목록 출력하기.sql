@@ -17,26 +17,18 @@
  #        ORDER BY COUNT(*) DESC LIMIT 1;
 
 
- select p.MEMBER_NAME , REVIEW_TEXT, DATE_FORMAT(REVIEW_DATE,"%Y-%m-%d") AS REVIEW_DATE
- from MEMBER_PROFILE as p ,REST_REVIEW as r
- where p.MEMBER_ID =r.MEMBER_ID
-     and p.MEMBER_ID like(
-         select MEMBER_ID
-            FROM REST_REVIEW 
-            GROUP BY MEMBER_ID 
-            ORDER BY COUNT(*) DESC LIMIT 1
-     )
-ORDER BY REVIEW_DATE ASC, REVIEW_TEXT ASC;
-
-
-
-
-
-
-
-
-
-
+SELECT A.MEMBER_NAME,
+       B.REVIEW_TEXT,
+      B.REVIEW_DATE
+FROM MEMBER_PROFILE A,REST_REVIEW B
+WHERE A.MEMBER_ID = B.MEMBER_ID
+  AND A.MEMBER_ID = (
+                      SELECT  MEMBER_ID
+                        FROM REST_REVIEW 
+                        GROUP BY MEMBER_ID
+                        ORDER BY COUNT(*)  DESC LIMIT 1
+                   )
+ORDER BY REVIEW_DATE ASC, REVIEW_TEXT asc;
 
 
 
