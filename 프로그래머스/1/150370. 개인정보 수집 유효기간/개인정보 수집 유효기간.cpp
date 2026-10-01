@@ -16,7 +16,7 @@ vector<int> priv;
 vector<int> solution(string today, vector<string> terms, vector<string> privacies) {
     vector<int> answer;
     
-    // 날짜 계산
+    // 오늘 날짜 계산
     year = stoi(today.substr(0, 4)); 
     month = stoi(today.substr(5, 2)); 
     day = stoi(today.substr(8, 2));
@@ -39,7 +39,7 @@ vector<int> solution(string today, vector<string> terms, vector<string> privacie
         int d = stoi(privacies[i].substr(8, 2));
         char a = privacies[i].back();
         // cout << y << "," << m << "," << d << "," << a << endl;
-        int tmp = y * 12 * 28 + (m - 1) * 28 + d + (t_map[a] * 28 - 1);
+        int tmp = y * 12 * 28 + (m - 1) * 28 + d + (t_map[a] * 28 -1);
         
         priv.push_back(tmp);
     }
