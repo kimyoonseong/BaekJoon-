@@ -18,31 +18,37 @@ vector<int> solution(vector<string> maps) {
           a[i][j]=maps[i][j];    
         }
     }
-    fill(&visited[0][0], &visited[0][0] + 104 * 104, 0);
+    fill(&visited[0][0],&visited[0][0]+104*104,0);
     for(int i=0; i<n; i++){
         for(int j=0; j<m; j++){
                 if(a[i][j] != 'X' && visited[i][j]==0){   
-                    int sum = 0;
-                    visited[i][j] = 1;
-                    q.push({i, j}); 
-                    sum += a[i][j] - '0';
-
-                    while(q.size()){
+                     
+                    q.push({i,j});
+                    int tmp=a[i][j]-'0'; //덩어리~ 
+                    while(!q.empty()){
                         tie(y, x) = q.front(); q.pop(); 
-                        for(int k = 0; k < 4; k++){
-                            int ny = y + dy[k]; 
-                            int nx = x + dx[k]; 
-                            if(ny < 0 || ny >= n || nx < 0 || nx >= m || a[ny][nx] == 'X') continue; 
-                            if(visited[ny][nx]||a[ny][nx]=='X') continue; 
-                            visited[ny][nx] = 1;
-                            sum += a[ny][nx] - '0';
-                            q.push({ny, nx}); 
-                        } 
+                        visited[y][x]=1;
+                        for(int k=0; k<4; k++){
+                            int ny= y+dy[k];
+                            int nx= x+dx[k];
+                            
+                            if(ny<0||ny>=n||nx<0||nx>=m) continue;
+                            if(visited[ny][nx]||a[ny][nx]=='X') continue;
+                            q.push({ny,nx});  
+                            visited[ny][nx]=1;
+                            tmp+=a[ny][nx]-'0';
+                        }                        
                     }
-                     answer.push_back(sum);
+                    answer.push_back(tmp);
                 }
         }
     }
+    if(answer.size()==0){
+        answer.push_back(-1);
+    }
+    sort(answer.begin(), answer.end());
+    
+        
     // for(int i=0; i<n; i++){
     //     for(int j=0; j<m; j++){
     //         cout<<visited[i][j]<<',';
@@ -50,7 +56,5 @@ vector<int> solution(vector<string> maps) {
     //     cout<<endl;
     // }
     
-    if(answer.size()==0) answer.push_back(-1);
-    sort(answer.begin(), answer.end());    
     return answer;
 }
