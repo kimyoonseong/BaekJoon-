@@ -9,16 +9,16 @@ vector<int> solution(vector<int> prices) {
     vector<int> answer(n);
     stack<int> s;
     
-    for(int i = 0; i < n; i++) {
-        // 스택에 있는 인덱스들의 가격이 현재 가격보다 크면, 해당 인덱스에서의 기간을 계산
+    for(int i = 0; i < n; i++) {//초 카운트
+        // 첨엔 push &&  만약 이전이 크다면~
         while(!s.empty() && prices[s.top()] > prices[i]) {
             //cout<<s.top();
-            answer[s.top()] = i - s.top();
+            answer[s.top()] = i - s.top();//인덱스 만큼 빼서 초값
             s.pop();
         }
         s.push(i);
     }
-     
+    //계속 증가한련들 처리 
     while(!s.empty()) {
         answer[s.top()] = n - s.top() - 1;
         s.pop();
