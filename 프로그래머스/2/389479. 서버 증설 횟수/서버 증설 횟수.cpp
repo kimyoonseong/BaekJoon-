@@ -12,9 +12,10 @@ int solution(vector<int> players, int m, int k) {
             tmp-=arr[i];
         }
         if(players[i]>=tmp*m+m) { 
-            answer+=(players[i]-(tmp*m))/m; 
-            arr[i+k] +=(players[i]-(tmp*m))/m;
-            tmp+=(players[i]-(tmp*m))/m;   
+            int need=(players[i]-(tmp*m))/m; 
+            answer+=need; 
+            arr[i+k] +=need;
+            tmp+=need;   
         }
         
        // cout<<"회차 : " <<i  <<"현재 증설된 tmp: " <<tmp << " answer: "<<answer<<endl;
