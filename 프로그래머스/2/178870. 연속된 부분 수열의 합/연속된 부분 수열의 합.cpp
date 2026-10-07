@@ -9,7 +9,7 @@
 //     vector<pair<int,int>> v;
 //     int start=0;
 //     int count=9999999;
-//     while(start<sequence.size()){
+//     while(start<sequence.size()){//일단 v에 부분수열 다 담기 
 //         int end;
 //         int temp=0;
 //         for(int i=start; i<sequence.size(); i++){
@@ -41,7 +41,9 @@
     
 //     //cout<<count;
 //     return answer;
-// }
+//}
+
+//투포인터가 맞는듯
 #include <vector>
 #include <iostream>
 using namespace std;
@@ -55,10 +57,10 @@ vector<int> solution(vector<int> sequence, int k) {
 
     while (end < n) {
         sum += sequence[end];
-        while (sum >= k) {
+        while (sum >= k) {//아니면 계속 쭉쭉더햇
             if (sum == k) {
             
-                if (end - start < min_len) {
+                if (end - start < min_len) {//최소길이저장
                     min_len = end - start;
                     min_start = start;
                     min_end = end;
